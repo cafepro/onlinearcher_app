@@ -1,0 +1,19 @@
+<div class="tabs">
+  <div class="tab all rwidth33 <%= 'selected' if @state.nil? %>">
+    <%= link_to t('scores.list_all'), '#', onclick: "scroll_to('all');", class: 'tab_link' %>
+  </div>
+  <div class="tab started rwidth33 <%= 'selected' if @state==Score.states[:started] %>">
+    <%= link_to t('scores.list_started'), '#', onclick: "scroll_to('started');", class: 'tab_link' %>
+  </div>
+  <div class="tab ended rwidth33 <%= 'selected' if @state==Score.states[:ended] %>">
+    <%= link_to t('scores.list_finished'), '#', onclick: "scroll_to('ended');", class: 'tab_link' %>
+  </div>
+</div>
+
+
+<script>
+  $('.tab_link').click(function(){
+    $('.tab').removeClass('selected');
+    $(this).parent().addClass('selected');
+  });
+</script>

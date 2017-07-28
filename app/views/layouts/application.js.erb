@@ -1,0 +1,23 @@
+$('.btn-menu').html('<%= render 'shared/btn_menu' %>');
+
+<% unless @num_started_scores.nil? %>
+	$('#num_started_scores').html('<%= @num_started_scores %>');
+<% end %>
+
+<% unless @num_scores.nil? %>
+	$('#num_scores').html('<%= @num_scores %>');	
+<% end %>
+
+//$('.content_menu').addClass('left_minus_100');
+//$('.content_menu').removeClass('left_minus_0');
+//$('.shadower').removeClass('shadow');
+hide_menu();
+$('.tabs_content').hide();
+$(".menu_desplegable_puntuar").hide();
+$(".bar_opts").show();
+
+
+<%= yield %>
+
+fix_links('<%= request.host_with_port %>', '<%= request.fullpath.gsub('add_arrows','puntuar').gsub(/\?\_\=.*/,'').gsub(/\&\_\=.*/,'') %>', '<%= current_user.id rescue 0 %>');
+

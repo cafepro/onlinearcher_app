@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!-- para que no se pueda hacer zoom en la web -->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <!-- meta etiquetas para que en iphone se ponga a pantalla completa en el navegador -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- meta etiqueta para que en android chrome se coloree la barra del navegador -->
+    <meta name="theme-color" content="#eb3812">
+
+    <title><%= t 'web_title' %></title>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+    <%= javascript_include_tag 'application' %>
+
+    <%= csrf_meta_tags %>
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <link rel="apple-touch-icon" href="/assets/images/oa_icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="/assets/images/oa_icon.png" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="app-content" style="height: 100vh;">
+    <div class="shadower"></div>
+    <div class="layer_limiter">
+        <nav id="action-bar" class="navbar-fixed-top">
+            <% if current_user %>
+                <%= link_to '#', class: 'btn-menu' do %>
+                    <%= render 'shared/btn_menu' %>
+                <% end %>
+            <% end %>
+            <!--<i id="loading" class="fa fa-fw fa-spin fa-circle-o-notch fa-2x hidden"></i>-->
+
+            <div class="bar_title">
+                OnlineArcher
+            </div>
+
+            <div class="bar_opts">
+                <%= yield :bar_options %>
+            </div>
+
+            <div class="tabs_content">
+                <%= yield :tabs if current_user %>
+            </div>
+
+
+        </nav>
+        
+        <div class="menu_desplegable_puntuar">
+            <%= yield :menu_desplegable_puntuar %>
+        </div>
+
+        <div id="menu-partial">
+            <!-- contenido del menú aquí -->
+            <%= render 'shared/menu' if current_user %>
+        </div>
+
+        <%#= render 'shared/error_messages' %>
+        <%= render 'shared/notices' %>
+
+        <div id="app_container">
+            <%= yield %>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    $('.btn-menu').click(function(){
+        toggle_menu();
+    });
+
+    $('.shadower').click(function(){
+        toggle_menu();
+    });
+
+    function toggle_menu(){
+        //$('.content_menu').toggleClass('left_minus_100');
+        $('.content_menu').toggleClass('left_minus_0');
+        $('.shadower').toggleClass('shadow');
+        //$('.btn-menu').toggleClass('left_85');
+        $('#action-bar').toggleClass('left_85');
+    }
+
+    function hide_menu(){
+        $('.content_menu').removeClass('left_minus_0');
+        $('.shadower').removeClass('shadow');
+        $('#action-bar').removeClass('left_85');
+    }
+</script>

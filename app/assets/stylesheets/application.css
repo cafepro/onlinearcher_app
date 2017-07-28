@@ -1,0 +1,150 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ * require bootstrap
+ *= require_tree .
+ *= require animate.min
+ *= require_self
+ *= require creative
+ *= require material_icons
+ */
+
+.material-icons { line-height: inherit !important; }
+.spin {
+	-webkit-animation: fa-spin 2s infinite linear;
+    animation: fa-spin 2s infinite linear;
+    height: inherit !important;
+}
+.md-30 { font-size: 30px !important; }
+
+ .acenter{ text-align: center; }
+ .aleft{ text-align: left; }
+ .aright{ text-align: right; }
+
+ .fixwith5  { width:5px;}
+.fixwith10 { width:10px;}
+.fixwith15 { width:15px;}
+.fixwith20 { width:20px;}
+.fixwith25 { width:25px;}
+.fixwith30 { width:30px;}
+.fixwith35 { width:35px;}
+.fixwith40 { width:40px;}
+.fixwith45 { width:45px;}
+.fixwith50 { width:50px;}
+
+.rwidth20 { width: 20%; }
+.rwidth25 { width: 25%; }
+.rwidth33 { width: 33.33%; }
+.rwidth50 { width: 50%; }
+
+.mtop0  { margin-top:0px; }
+.mtop3  { margin-top:3px; }
+.mtop5  { margin-top:5px; }
+.mtop8  { margin-top:8px; }
+.mtop10 { margin-top:10px; }
+.mtop15 { margin-top:15px; }
+.mtop20 { margin-top:20px; }
+.mtop25 { margin-top:25px; }
+.mtop30 { margin-top:30px; }
+.mtop35 { margin-top:35px; }
+.mtop40 { margin-top:40px; }
+.mtop45 { margin-top:45px; }
+.mtop50 { margin-top:50px; }
+.mtop60 { margin-top:60px; }
+.mtop70 { margin-top:70px; }
+.mtop80 { margin-top:80px; }
+.mtop90 { margin-top:90px; }
+.mtop100{ margin-top:100px; }
+
+.mbottom0  { margin-bottom:0px; }
+.mbottom3  { margin-bottom:3px; }
+.mbottom5  { margin-bottom:5px; }
+.mbottom8  { margin-bottom:8px; }
+.mbottom10 { margin-bottom:10px; }
+.mbottom15 { margin-bottom:15px; }
+.mbottom20 { margin-bottom:20px; }
+.mbottom25 { margin-bottom:25px; }
+.mbottom30 { margin-bottom:30px; }
+.mbottom35 { margin-bottom:35px; }
+.mbottom40 { margin-bottom:40px; }
+.mbottom45 { margin-bottom:45px; }
+.mbottom50 { margin-bottom:50px; }
+.mbottom60 { margin-bottom:60px; }
+.mbottom70 { margin-bottom:70px; }
+.mbottom80 { margin-bottom:80px; }
+.mbottom90 { margin-bottom:90px; }
+.mbottom100{ margin-bottom:100px; }
+
+.mleft0  { margin-left:0px; }
+.mleft3  { margin-left:3px; }
+.mleft5  { margin-left:5px; }
+.mleft8  { margin-left:8px; }
+.mleft10 { margin-left:10px; }
+.mleft15 { margin-left:15px; }
+.mleft20 { margin-left:20px; }
+.mleft25 { margin-left:25px; }
+.mleft30 { margin-left:30px; }
+.mleft35 { margin-left:35px; }
+.mleft40 { margin-left:40px; }
+.mleft45 { margin-left:45px; }
+.mleft50 { margin-left:50px; }
+.mleft60 { margin-left:60px; }
+.mleft70 { margin-left:70px; }
+.mleft80 { margin-left:80px; }
+.mleft90 { margin-left:90px; }
+.mleft100{ margin-left:100px; }
+
+.mright0  { margin-right:0px; }
+.mright3  { margin-right:3px; }
+.mright5  { margin-right:5px; }
+.mright8  { margin-right:8px; }
+.mright10 { margin-right:10px; }
+.mright15 { margin-right:15px; }
+.mright20 { margin-right:20px; }
+.mright25 { margin-right:25px; }
+.mright30 { margin-right:30px; }
+.mright35 { margin-right:35px; }
+.mright40 { margin-right:40px; }
+.mright45 { margin-right:45px; }
+.mright50 { margin-right:50px; }
+.mright60 { margin-right:60px; }
+.mright70 { margin-right:70px; }
+.mright80 { margin-right:80px; }
+.mright90 { margin-right:90px; }
+.mright100{ margin-right:100px; }
+
+.mrtop30 { margin-top:30%; }
+.mrtop40 { margin-top:40%; }
+.mrtop50 { margin-top:50%; }
+
+.fonts03  { font-size:0.3em; }
+.fonts05  { font-size:0.5em; }
+.fonts08  { font-size:0.8em; }
+.fonts09  { font-size:0.9em; }
+.fonts10  { font-size:1.0em; }
+.fonts11  { font-size:1.1em; }
+.fonts13  { font-size:1.3em; }
+.fonts15  { font-size:1.5em; }
+.fonts18  { font-size:1.8em; }
+.fonts20  { font-size:2.0em; }
+
+.fa-6x { font-size: 6em !important }
+.fa-7x { font-size: 7em !important }
+.fa-8x { font-size: 8em !important }
+.fa-9x { font-size: 9em !important }
+
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+.block { display: block; }
+
+.fleft { float:left; }
+.fright { float:right; }

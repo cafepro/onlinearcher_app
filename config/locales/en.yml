@@ -1,0 +1,19 @@
+---
+en:
+  errors:
+    messages:
+      in_between: must be in between %{min} and %{max}
+      spoofed_media_type: has contents that are not what they are reported to be
+  hello: Hello world
+  number:
+    human:
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB

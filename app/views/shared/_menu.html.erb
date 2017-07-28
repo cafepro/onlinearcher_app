@@ -1,0 +1,34 @@
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="content_menu left_minus_100">
+    <div class="menu_header">
+        <div class="sombreado"></div>
+        <%= image_tag 'default_header.jpg' %>
+    </div>
+    <ul class="list_menu">
+        <li>
+            <%= link_to new_score_path, remote: true do %>
+                <%= t('score.new_score').html_safe %>
+            <% end %>
+        </li>
+
+        <li>
+            <%= link_to scores_path(state: Score.states[:started]), remote: true do %>
+                <%= t('score.list_started').html_safe %>
+                <span id="num_started_scores"><%= @num_started_scores.blank? ? current_user.scores.started.count : @num_started_scores %></span>
+            <% end %>
+        </li>
+
+        <li>
+            <%= link_to scores_path, remote: true do %>
+	            <%= t('score.list_scores').html_safe %>
+	            <span id="num_scores"><%= @num_scores.blank? ? current_user.scores.count : @num_scores %></span>
+	        <% end %>
+        </li>
+        
+        <%= yield :menu %>
+
+        <li>
+        <%= link_to(t('main.close_session').html_safe, destroy_user_session_path, :method => :delete) %>
+        </li>
+    </ul>
+</div>

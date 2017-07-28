@@ -1,0 +1,4 @@
+$('.tabs_content').show();
+$("#app_container").html("<%= raw escape_javascript(render 'scores/index') %>");
+$(".tabs_content").html("<%= raw escape_javascript(render 'shared/tabs') %>");
+$(".bar_opts").hide();

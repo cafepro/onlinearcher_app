@@ -1,0 +1,85 @@
+<%= content_for :tabs do %>
+    <%= render 'shared/tabs' %>
+<% end %>
+
+<%= link_to new_score_path, remote: true, class: 'btn-add' do %>
+  <%= material_icon.add.md_36 %>
+<% end %>
+
+<div id="touchable" class="three_tabs mtop50">
+	<div class="tab_content all">
+		<ul class="listado">
+		  <% @all.each do |score| %>
+		    <%= render 'scores/score_field', score: score %>
+		  <% end %>
+		</ul>
+	</div>
+
+	<div class="tab_content started">
+		<ul class="listado">
+		  <% @started.each do |score| %>
+		    <%= render 'scores/score_field', score: score %>
+		  <% end %>
+		</ul>
+	</div>
+
+	<div class="tab_content ended">
+		<ul class="listado">
+		  <% @ended.each do |score| %>
+		    <%= render 'scores/score_field', score: score %>
+		  <% end %>
+		</ul>
+	</div>
+</div>
+
+<script>
+	var elementoTouch= document.getElementById("touchable");
+	var element = $('body');
+	var offset = element.width();
+	var first_offset = offset/2;
+	var second_offset = offset+first_offset;
+	//posteriormente asignamos el manejador de eventos lo cual
+	// se hace de manera convencional.
+	elementoTouch.addEventListener('touchend', function(e){
+		var pos = element.scrollLeft();
+		//alert(pos);
+		if(pos < first_offset){
+			scroll_to('all');
+		}else if(pos > first_offset && pos < second_offset){
+			scroll_to('started');
+		}else if(pos > second_offset){
+			scroll_to('ended');
+		}else{
+			scroll_to('all');
+		}
+
+	}, false);
+
+	function horizontal_scroll(position) {
+		element.stop().animate({
+	       scrollLeft: position
+	    }, 500);
+	}
+
+	function scroll_to(ele){
+		$('.tab').removeClass('selected');
+		if(ele == 'all'){
+			horizontal_scroll(0);
+			$('.tab.all').addClass('selected');
+		}else if(ele == 'started') {
+			horizontal_scroll(offset);
+			$('.tab.started').addClass('selected');
+		}else if(ele == 'ended') {
+			horizontal_scroll(2*offset);
+			$('.tab.ended').addClass('selected');
+		}
+	}
+	<% if @state == Score.states[:started] %>
+		horizontal_scroll(offset);
+	<% elsif @state == Score.states[:ended] %>
+		horizontal_scroll(2*offset);
+	<% else %>
+		horizontal_scroll(0);
+	<% end %>
+</script>
+

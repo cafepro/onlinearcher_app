@@ -1,0 +1,12 @@
+<% unless notice.blank? %>
+	<div class="toast">
+		<p id="notice"><%= notice %></p>
+	</div>
+<% end %>
+
+<script>
+	$(document).on('page:load ready', function(){
+		$('.toast').addClass('toast_show');
+		setTimeout(function(){ $('.toast').removeClass('toast_show'); }, 5000);
+	});
+</script>

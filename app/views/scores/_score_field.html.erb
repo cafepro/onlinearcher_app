@@ -1,0 +1,14 @@
+<li>
+  <%= link_to score, remote: true do %>
+    <div class="score_icon" style="background-color: <%= score.score_type.color %>">
+    	<%= score.points %>
+    	<div class="pts"><%= t('score.pts_sin_punto') %></div>
+    </div>
+    <div class="score_data">
+      <div class="score_name"><%= score.name %></div>
+      <div class="score_type"><%= score.score_type.name rescue 'Sesión libre' %></div>
+      <div class="score_average"><%= t('score.average') + ' ' + score.average.to_s %></div>
+    </div>
+    <div class="score_navigate"><%= material_icon.navigate_next.md_36 %></div>
+  <% end %>
+</li>

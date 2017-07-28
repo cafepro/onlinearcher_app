@@ -1,0 +1,42 @@
+<% if @arrows.count > 0%>
+	<% dist = 1 %>
+	<% if @arrows.count > @score_type.arrows %>
+		<% grupo = @score_type.arrows %>
+	<% else %>
+		<% grupo = @arrows.count %>
+	<% end %>
+
+	<% @arrows.in_groups_of(grupo) do |arrows| %>
+		<ul>
+			<li><strong><%= t('score.tabla_puntos_dist',dist: @score_type.send("distance_#{dist}")) %></strong></li>
+			<% acumulado = 0 %>
+			<% partial_bis = 0 %>
+			<% sacar_partial = false %>
+			<% arrows.in_groups_of(3) do |arrow| %>
+				<% partial = arrow[0].value + arrow[1].value + arrow[2].value %>
+				<% partial_bis += partial %>
+				<% acumulado += partial %>
+				<li class="board">
+					<div class="score_arrow"><%= arrow[0].arrow %></div>
+					<div class="score_arrow"><%= arrow[1].arrow %></div>
+					<div class="score_arrow"><%= arrow[2].arrow %></div>
+					<div class="score_arrow partial_cell"><%= partial %></div>
+					<% if sacar_partial %>
+						<div class="score_arrow partial_cell"><%= partial_bis %></div>
+						<% sacar_partial = false %>
+						<% partial_bis = 0 %>
+					<% else %>
+						<div class="score_arrow partial_cell"> </div>
+						<% sacar_partial = true %>
+					<% end %>
+					<div class="score_arrow total_cell"><%= acumulado %></div>
+				</li>
+			<% end %>
+		</ul>
+		<% dist += 1 %>
+	<% end %>
+<% else %>
+	<ul>
+		<li><%= t 'score.tabla_puntos_vacia' %></li>
+	</ul>
+<% end %>

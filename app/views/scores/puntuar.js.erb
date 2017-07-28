@@ -1,0 +1,7 @@
+$(".menu_desplegable_puntuar").show();
+$("#app_container").html("<%= raw escape_javascript(render 'scores/puntuar') %>");
+//$("#menu-partial").html("<%= raw escape_javascript(render 'scores/menu_score') %>");
+$(".bar_opts").html("<%= raw escape_javascript(render 'scores/bar_options_puntuar') %>");
+
+$(".menu_desplegable_puntuar").html("<%= raw escape_javascript(render 'scores/score_board') %>");
+

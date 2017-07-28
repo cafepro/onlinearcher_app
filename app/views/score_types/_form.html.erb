@@ -1,0 +1,61 @@
+<%= form_for(@score_type) do |f| %>
+  <% if @score_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@score_type.errors.count, "error") %> prohibited this score_type from being saved:</h2>
+
+      <ul>
+      <% @score_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br>
+    <%= f.text_field :color %>
+  </div>
+  <div class="field">
+    <%= f.label :round %><br>
+    <%= f.number_field :round %>
+  </div>
+  <div class="field">
+    <%= f.label :letter %><br>
+    <%= f.text_field :letter %>
+  </div>
+  <div class="field">
+    <%= f.label :arrows %><br>
+    <%= f.number_field :arrows %>
+  </div>
+  <div class="field">
+    <%= f.label :distance_1 %><br>
+    <%= f.number_field :distance_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :distance_2 %><br>
+    <%= f.number_field :distance_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :distance_3 %><br>
+    <%= f.number_field :distance_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :distance_4 %><br>
+    <%= f.number_field :distance_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :num_rounds %><br>
+    <%= f.number_field :num_rounds %>
+  </div>
+  <div class="field">
+    <%= f.label :published %><br>
+    <%= f.check_box :published %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

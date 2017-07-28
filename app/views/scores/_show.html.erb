@@ -1,0 +1,49 @@
+<%= content_for :bar_options do %>
+  <% render 'scores/bar_options' %>
+<% end %>
+
+<ul class="listado show">
+  <li class="title">
+    <strong><%= @score.name %></strong>
+  </li>
+
+  <li>
+    <%= @score_type.name %>
+  </li>
+
+  <li>
+    <div class="aleft">
+      <strong><%= @score.points.to_s + ' ' + t('score.pts') %></strong>
+    </div>
+    <div class="aright">
+      <strong><%= t 'score.avg' %></strong>
+      <%= @score.average %>
+      <%= t 'score.pts' %>
+    </div>
+  </li>
+
+  <li>
+    <div class="three_fields aleft">
+      <strong>Xs:</strong>
+      <%= @score.x_count %>
+    </div>
+    <div class="three_fields acenter">
+      <strong>10s:</strong>
+      <%= @score.ten_count %>
+    </div>
+    <div class="three_fields aright">
+      <strong>9s:</strong>
+      <%= @score.nine_count %>
+    </div>
+  </li>
+
+  <%= render 'score_board' %>
+
+</ul>
+
+<% if @score.started? %>
+  <%= link_to puntuar_score_path(@score), remote: true, class: 'btn-add' do %>
+    <%= material_icon.forward %>
+  <% end %>
+<% end %>
+

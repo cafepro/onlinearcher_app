@@ -1,0 +1,13 @@
+<%= link_to score_path(@score), remote: true do %>
+	<%= material_icon.panorama_fish_eye %>
+<% end %>
+
+<%= link_to '#', class: 'menu-puntuar-desplegar' do %>
+	<%= material_icon.more_vert %>
+<% end %>
+
+<script>
+	$('.menu-puntuar-desplegar').click(function() {	
+		$('.menu_desplegable_puntuar').toggleClass('menu_puntuar_desplegado');
+	})
+</script>

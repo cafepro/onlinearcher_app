@@ -1,0 +1,41 @@
+
+<div id="datos-score">
+	<div class="score_icon_puntuar">
+		<div id="acumulacion" class="inline-block"><%= @score.points %></div>
+		<div class="pts"><%= t('score.pts_sin_punto') %></div>
+	</div>
+	<div class="block">
+		<div class="parciales_pts">
+			<div class="block"><%= t 'score.anterior' %></div>
+			<div class="parcial_icon_puntos">
+				<div id="ronda_anterior" class="inline-block"><%= @score.puntos_ronda_anterior %></div>
+				<div class="pts"><%= t 'score.pts_sin_punto' %></div>
+			</div>
+		</div>
+		<div class="parciales_pts">
+			<div class="block"><%= t 'score.actual' %></div>
+			<div class="parcial_icon_puntos">
+				<div id="parcial"><%= @score.parcial %></div>
+				<div class="pts"><%= t 'score.pts_sin_punto' %></div>
+			</div>
+		</div>
+	</div>
+	<div class="media">
+		<h4>
+			<div class="block"><%= t 'score.avg' %></div>
+			<div class="inline-block" id="media"><%= @score.average %></div>
+			<div class="inline-block"><%= t 'score.pts' %></div>
+		</h4>
+	</div>
+
+	<div class="ronda">
+		<h4>
+			<div class="inline-block"><%= t 'score.ronda' %></div>
+			<div class="inline-block" id="ronda"><%= @score.ronda %></div>
+		</h4>
+	</div>
+
+
+	<%= link_to t('score.reset'), '#', on_click: 'resetear();', class: 'btn btn-primary btn-big resetear hidden' %>
+	<%= link_to t('score.finished').html_safe, finish_score_path(@score), class: 'btn btn-primary btn-big finish hidden', remote: true %>
+</div>

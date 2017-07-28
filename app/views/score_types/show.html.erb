@@ -1,0 +1,38 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @score_type.name %>
+</p>
+
+<p>
+  <strong>Arrows:</strong>
+  <%= @score_type.arrows %>
+</p>
+
+<p>
+  <strong>Distance 1:</strong>
+  <%= @score_type.distance_1 %>
+</p>
+
+<p>
+  <strong>Distance 2:</strong>
+  <%= @score_type.distance_2 %>
+</p>
+
+<p>
+  <strong>Distance 3:</strong>
+  <%= @score_type.distance_3 %>
+</p>
+
+<p>
+  <strong>Distance 4:</strong>
+  <%= @score_type.distance_4 %>
+</p>
+
+<p>
+  <strong>Published:</strong>
+  <%= @score_type.published %>
+</p>
+
+<%= link_to 'Edit', edit_score_type_path(@score_type) %> |
+<%= link_to 'Back', score_types_path %>

@@ -1,0 +1,15 @@
+<%= content_for :bar_options do %>
+  <%= render 'scores/bar_options_new' %>  
+<% end %>
+
+<div class="acenter">
+	<h4><%= t('score.new').html_safe %></h4>
+	<%= render 'form' %>
+</div>
+
+<h4 class="mtop30"><%= t'score.continuar' %></h4>
+<ul class="listado">
+  <% @scores.each do |score| %>
+    <%= render 'scores/score_field', score: score %>
+  <% end %>
+</ul>

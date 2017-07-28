@@ -1,0 +1,161 @@
+<div class="keyboard">
+	<div class="arrow">
+		<%= link_to 'X', '#', class: 'btn btn-arrow', remote: true, 'data-value': 10, 'data-arrow': 'X' %>
+	</div>
+	<div class="arrow">
+		<%= link_to '10', '#', class: 'btn btn-arrow', remote: true, 'data-value': 10, 'data-arrow': '10' %>
+	</div>
+	<div class="arrow">
+		<%= link_to '9', '#', class: 'btn btn-arrow', remote: true, 'data-value': 9, 'data-arrow': '9' %>
+	</div>
+	<div class="arrow">
+		<%= link_to '8', '#', class: 'btn btn-arrow', remote: true, 'data-value': 8, 'data-arrow': '8' %>
+	</div>
+	<div class="arrow">
+		<%= link_to '7', '#', class: 'btn btn-arrow', remote: true, 'data-value': 7, 'data-arrow': '7' %>
+	</div>
+	<div class="arrow">
+		<%= link_to '6', '#', class: 'btn btn-arrow', remote: true, 'data-value': 6, 'data-arrow': '6' %>
+	</div>
+	<div class="arrow">
+		<%= link_to '5', '#', class: 'btn btn-arrow', remote: true, 'data-value': 5, 'data-arrow': '5' %>
+	</div>
+	<div class="arrow">
+		<%= link_to '4', '#', class: 'btn btn-arrow', remote: true, 'data-value': 4, 'data-arrow': '4' %>
+	</div>
+	<div class="arrow">
+		<%= link_to '3', '#', class: 'btn btn-arrow', remote: true, 'data-value': 3, 'data-arrow': '3' %>
+	</div>
+	<div class="arrow">
+		<%= link_to '2', '#', class: 'btn btn-arrow', remote: true, 'data-value': 2, 'data-arrow': '2' %>
+	</div>
+	<div class="arrow">
+		<%= link_to '1', '#', class: 'btn btn-arrow', remote: true, 'data-value': 1, 'data-arrow': '1' %>
+	</div>
+	<div class="arrow">
+		<%= link_to 'M', '#', class: 'btn btn-arrow', remote: true, 'data-value': 0, 'data-arrow': 'M' %>
+	</div>
+</div>
+
+<%= form_tag(add_arrows_score_path(@score), remote: true, id: 'form_arrows') do %>
+	<%= hidden_field_tag 'arrow[val_1]' %>
+	<%= hidden_field_tag 'arrow[val_2]' %>
+	<%= hidden_field_tag 'arrow[val_3]' %>
+	<%= hidden_field_tag 'arrow[val_4]' %>
+	<%= hidden_field_tag 'arrow[val_5]' %>
+	<%= hidden_field_tag 'arrow[val_6]' %>
+	<%= hidden_field_tag 'round', @score.actual_round %>
+<% end %>
+
+<script>
+	var total_arrows = <%= @score.score_type.arrows rescue 999 %>;
+	var arrows = <%= @arrows.count %>;
+	var total_points = $('#acumulacion');
+	var avg = $('#media');
+	var parcial = $('#parcial');
+	var ronda_anterior = $('#ronda_anterior');
+	var foco = 1;
+
+	function ordenar() {
+		var offset = foco;
+		var cambio = false;
+		while(offset > 1){
+			if(parseInt($('#arrow_'+offset).val()) > parseInt($('#arrow_'+(offset-1)).val()) || $('#arrow_'+offset).val() == 'X' || $('#arrow_'+(offset-1)).val() == 'M'){
+				var aux = $('#arrow_'+(offset-1)).val();
+				$('#arrow_'+(offset-1)).val($('#arrow_'+offset).val());
+				$('#arrow_'+offset).val(aux);
+				cambio = true;
+			}
+			offset--;
+		}
+		// si hubo cambios llamo a la función de sumar parciales
+		if(cambio){
+			sumar_parciales();
+		}
+	}
+
+	function sumar_parciales(){
+		var i=1;
+		var parcial = 0;
+		var parcial_1 = $('#partial_1');
+		var parcial_2 = $('#partial_2');
+		while(i <= foco){
+			var val = $('#arrow_'+i).val();
+			if(val=='X')
+				val = 10;
+			if(val=='M')
+				val = 0
+			parcial += parseInt(val);
+			if(i == 3){
+				parcial_1.val(parcial);
+				parcial = 0;
+			}
+			i++;
+		}
+		if(i>3){
+			parcial_2.val(parcial);
+		}
+	}
+
+	$('.btn-arrow').click(function(event){
+		event.stopPropagation();
+		event.preventDefault();
+
+		if(foco>0 && foco<7){
+			var value = $(this).data('value');
+			var arrow = $(this).data('arrow');
+
+			total_points.html(parseInt(total_points.html())+value);
+			parcial.html(parseInt(parcial.html())+value);
+
+			$('#arrow_'+foco).val(arrow);
+			// seteamos el hidden del formulario...
+			$('#arrow_val_'+foco).val(arrow);
+			suma_parcial(value);
+			arrows++;
+			// actualizamos la media
+			avg.html((parseInt(total_points.html())/arrows).toFixed(2));
+			
+			//reordenamos antes de aumentar el foco
+			ordenar();
+
+			if(foco == 6){
+				$('.btn-menu').html('<%= render 'shared/btn_loading' %>');
+				//enviamos el formulario
+				$('#form_arrows').submit();
+			}
+			//aumentamos el foco
+			foco++;
+			//if(foco>6 || arrows == total_arrows || arrows > total_arrows){
+			//	if(arrows == total_arrows || arrows > total_arrows) {
+			//		$('.finish').removeClass('hidden');
+			//	} else if(foco>6) {
+			//		$('#ronda').html(parseInt($('#ronda').html())+1);
+			//		$('.resetear').removeClass('hidden');
+			//	}
+			//}
+
+		}
+	});
+
+	function suma_parcial(value) {
+		if(foco < 4) {
+			$('#partial_1').val(parseInt($('#partial_1').val())+value);	
+		}else if(foco <7){
+			$('#partial_2').val(parseInt($('#partial_2').val())+value);
+		}
+	}
+
+	$('.resetear').click(function (event){
+		event.stopPropagation();
+		event.preventDefault();
+		ronda_anterior.html(parcial.html());
+		foco=1;
+		parcial.html('0');
+		$('.parciales').val(null);
+		$('.suma_parcial').val(0);
+		$('.resetear').addClass('hidden');
+	});
+
+
+</script>

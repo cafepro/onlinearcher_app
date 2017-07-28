@@ -1,0 +1,12 @@
+$(".menu_desplegable_puntuar").show();
+
+//$('#loading').addClass('hidden');
+
+$(".menu_desplegable_puntuar").html("<%= raw escape_javascript(render 'scores/score_board') %>");
+
+<% if @time_to_finish %>
+	$('.finish').removeClass('hidden');
+<% else %>
+	$('#ronda').html(parseInt($('#ronda').html())+1);
+	$('.resetear').removeClass('hidden');
+<% end %>

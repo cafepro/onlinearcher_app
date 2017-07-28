@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @arrow.score_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @arrow.value %>
+</p>
+
+<%= link_to 'Edit', edit_arrow_path(@arrow) %> |
+<%= link_to 'Back', arrows_path %>

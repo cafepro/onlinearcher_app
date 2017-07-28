@@ -1,0 +1,12 @@
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <%= link_to t('score.list_scores').html_safe, scores_path, remote: true %>
+        </li>
+        <%= render 'score_board' unless @arrows.blank? %>
+        <li>
+        <%= link_to(t('main.close_session').html_safe, destroy_user_session_path, :method => :delete) %>
+        </li>
+    </ul>
+</div>

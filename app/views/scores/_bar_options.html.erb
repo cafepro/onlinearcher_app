@@ -1,0 +1,11 @@
+<%= link_to scores_path, remote: true do %>
+<%= material_icon.arrow_back %>
+<% end %>
+
+<%= link_to edit_score_path(@score), remote: true do %>
+<%= material_icon.create %>
+<% end %>
+
+<%= link_to @score, method: :delete, remote: true, data: { confirm: t('main.confirm_delete' )} do %>
+<%= material_icon.delete %>
+<% end %>

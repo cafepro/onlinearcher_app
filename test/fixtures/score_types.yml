@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  score_id: 1
+  name: MyString
+  arrows: 1
+  distance_1: 1
+  distance_2: 1
+  distance_3: 1
+  distance_4: 1
+  published: false
+
+two:
+  score_id: 1
+  name: MyString
+  arrows: 1
+  distance_1: 1
+  distance_2: 1
+  distance_3: 1
+  distance_4: 1
+  published: false

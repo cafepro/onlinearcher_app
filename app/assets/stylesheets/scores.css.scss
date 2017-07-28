@@ -1,0 +1,403 @@
+// Place all the styles related to the scores controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import './variables/variables';
+
+/*#cont_escalable { display:block; }
+@media only screen and (orientation:portrait){
+ #cont_escalable {  
+       -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+       -o-transform: rotate(0deg);
+       -ms-transform: rotate(0deg);
+       transform: rotate(0deg);
+      }
+
+}
+@media only screen and (orientation:landscape){
+ #cont_escalable {  
+       -webkit-transform: rotate(90deg);
+       -moz-transform: rotate(90deg);
+       -o-transform: rotate(90deg);
+       -ms-transform: rotate(90deg);
+       transform: rotate(90deg);
+      }
+}*/
+
+/*
+$gradiente {
+	background: rgba(250,118,85,1);
+    background: -moz-linear-gradient(top, rgba(250,118,85,1) 0%, rgba(255,63,20,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(250,118,85,1)), color-stop(100%, rgba(255,63,20,1)));
+    background: -webkit-linear-gradient(top, rgba(250,118,85,1) 0%, rgba(255,63,20,1) 100%);
+    background: -o-linear-gradient(top, rgba(250,118,85,1) 0%, rgba(255,63,20,1) 100%);
+    background: -ms-linear-gradient(top, rgba(250,118,85,1) 0%, rgba(255,63,20,1) 100%);
+    background: linear-gradient(to bottom, rgba(250,118,85,1) 0%, rgba(255,63,20,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa7655', endColorstr='#ff3f14', GradientType=0 );
+}
+*/
+
+#app-content {
+	.navbar-default {
+	  /* border-color: rgba(34, 34, 34, 0.05); */
+	  border-bottom: 1px solid $primary-color;
+	  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+	  background-color: $secondary-color;
+	  -webkit-transition: all .35s;
+	  -moz-transition: all .35s;
+	  transition: all .35s;
+	}
+
+	#app_container {
+		padding-top:56px;
+		/*padding-bottom: 9vh;*/
+		text-align: center;
+	}
+
+	.resetear, .finish {
+
+	}
+	.finish { }
+
+	.keyboard{
+		background: rgba(250,118,85,1);
+	    background: -moz-linear-gradient(top, rgba(250,118,85,1) 0%, rgba(255,63,20,1) 100%);
+	    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(250,118,85,1)), color-stop(100%, rgba(255,63,20,1)));
+	    background: -webkit-linear-gradient(top, rgba(250,118,85,1) 0%, rgba(255,63,20,1) 100%);
+	    background: -o-linear-gradient(top, rgba(250,118,85,1) 0%, rgba(255,63,20,1) 100%);
+	    background: -ms-linear-gradient(top, rgba(250,118,85,1) 0%, rgba(255,63,20,1) 100%);
+	    background: linear-gradient(to bottom, rgba(250,118,85,1) 0%, rgba(255,63,20,1) 100%);
+	    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa7655', endColorstr='#ff3f14', GradientType=0 );
+		position:fixed;
+		top: 61vh;
+		height: 39vh;
+		width: 100%;
+		background-color: transparent;
+		.arrow{
+			float:left;
+			width: 25vw;
+			text-align: center;
+			margin-top:2px;
+			.btn {
+				-webkit-transition: all 0.5s;
+				-moz-transition: all 0.5s;
+				transition: all 0.5s;
+				display: inline-block;
+				padding: 0;
+				margin:auto;
+				height: 13vh;
+				width: 13vh;
+				line-height: 12vh;
+				background-color: transparent;
+				color: $primary-color;
+				font-size:1.6em;
+				border-radius:50%;
+				/*border: 1px solid white;*/
+				&:hover{
+					background-color: darken($secondary-color,6%);
+				}
+				&:active{
+					background-color: transparent;
+					box-shadow: none;
+				}
+				&:visited{
+					background-color: transparent;
+					box-shadow: none;
+				}
+			}
+		}
+	}
+
+	.partial_score{
+		position: fixed;
+		top:47vh;
+		width: 100vw;
+		height: 14vh;
+		background-color: $primary-color;
+		.arrow{
+			float:left;
+			width: 25%;
+			text-align: center;
+			padding: 0 5px;
+			background-color: $primary-color;
+			color: $secondary-color;
+			height: 7vh;
+			input{color: $secondary-color;}
+		}
+		input {
+			background-color: $primary-color;
+			width: 100%;
+			border: none;
+		    height: 7vh;
+		    line-height: 7vh;
+		    text-align: center;
+		    font-size:1.5em;
+		    &.borde {
+		    	border-bottom: 1px solid #999;
+		    }
+		}
+	}
+
+	#datos-score {
+		position:fixed;
+		width: 100%;
+		text-align: center;
+		height: 38vh;
+		color: $primary-font-color;
+		background-color: $primary-color;
+	}
+
+	.navbar-default .navbar-toggle {
+		border:none;
+	}
+
+	#loading {
+		position: relative;
+	    float: right;
+	    top: 11px;
+	    color: $secondary-font-color;
+	}
+}
+
+ul.listado{
+	padding:0;
+	li{
+		text-align: left;
+		border-bottom: 1px solid $gris-claro;
+		background-color: rgba(255,255,255,0.1);
+	    color: $secondary-font-color;
+	    margin: 10px 5px;
+	    height: 70px;
+	    padding: 0;
+	    a{
+	    	text-decoration: none;
+		    color: $secondary-color;
+		    display: block;
+		    padding: 10px 5px;
+		    line-height: 18px;
+	    }
+	    span{
+	    	display: inline-block;
+		    width: 85%;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		    text-transform: uppercase;
+		    font-weight: 700;
+	    }
+	    .score_icon {
+			background-color: #0091EA;
+		    color: white;
+		    border-radius: 50%;
+		    width: 40px;
+		    height: 40px;
+		    float: left;
+		    line-height: 40px;
+		    text-align: center;
+		    font-size: 1.2em;
+		    .pts{
+			    position: absolute;
+			    background-color: lighten($secondary-color,10);
+			    border-radius: 50%;
+			    width: 20px;
+			    height: 20px;
+			    line-height: 20px;
+			    font-size: 0.7em;
+			    /* float: right; */
+			    margin-top: -15px;
+			    margin-left: 30px;
+		    }
+		}
+
+		.score_data {
+			    float: left;
+		    	width: 70%;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    white-space: nowrap;
+			    margin-left: 12px;
+			.score_name {
+		    	display: block;
+			    text-transform: uppercase;
+			    font-weight: 700;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			}
+			.score_type {
+		    	display: inline-block;
+		    	overflow: hidden;
+			    text-overflow: ellipsis;
+			    font-size: 0.9em;
+			    color: $primary-font-color;
+			}
+			.score_average {
+		    	display: inline-block;
+		    	overflow: hidden;
+			    text-overflow: ellipsis;
+			    font-size: 0.9em;
+			    color: $primary-font-color;
+			}
+		}
+
+		.score_navigate{
+		    float: right;
+		    line-height: 35px;
+		}
+	}
+}
+
+li.board {
+	min-height: 30px;
+	border-bottom: 1px solid $primary-color;
+		div.score_arrow {
+		width: 16.5%;
+	    min-height: 33px;
+	    line-height: 33px;
+	    float: left;
+	    text-align: center;
+	    color: $primary-font-color;
+		}
+		.total_cell, .partial_cell{
+			font-weight: 700;
+		}
+		.total_cell {
+			color: $third-font-color !important;
+		}
+}
+
+ul.show {
+	li{
+		border-radius: 0;
+	    border: 0;
+	    border-bottom: 1px solid #ccc;
+	    height: inherit;
+	    min-height: 35px;
+	    line-height: 35px;
+	    color: #ff572b;
+	    background-color: transparent;
+	    margin: 0 5px;
+	    padding: 0 5px;
+	    overflow: hidden;
+		text-overflow: ellipsis;
+		div {
+			width: 50%;
+			float: left;
+			&.three_fields {
+				width: 33.3%;
+			}
+		}
+		&.title {
+			text-transform: uppercase;
+		}
+	}
+}
+
+
+.bottom-opts {
+	position: fixed;
+	bottom: 0;
+	height: 50px;
+	width: 100%;
+	line-height: 50px;
+	padding: 0 10px;
+	border-top: 1px solid $secondary-color;
+	background-color: $secondary-color;
+}
+
+.menu_desplegable_puntuar {
+    position: absolute;
+    width: 100%;
+    /*top: -100vh;*/
+    transform: translate3d(0, -100vh, 0);
+    -webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;
+	z-index: 999;
+	ul {
+	    background-color: $primary-color;
+		width: 90%;
+		text-align: center;
+		margin:auto;
+		box-shadow: #666 0px 3px 12px 0px;
+		li{
+			/*padding: 5px 10px;*/
+			height: 33px;
+			line-height: 33px;
+			border-top: 1px solid $secondary-color;
+		}
+	}
+}
+.menu_puntuar_desplegado{
+	transform: translate3d(0, 56px, 0);
+}
+
+.score_icon_puntuar {
+	background-color: $third-color;
+    color: white;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    margin-top: 15px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 1.7em;
+	.pts{
+	    position: absolute;
+	    background-color: lighten($secondary-color,10);
+	    border-radius: 50%;
+	    width: 35px;
+	    height: 35px;
+	    line-height: 33px;
+	    font-size: 0.6em;
+	    /* float: right; */
+	    margin-top: -29px;
+	    margin-left: 50px;
+	    text-align: center;
+	    box-shadow: #666 0px 2px 4px 0px;
+	}
+}
+
+.parcial_icon_puntos {
+	background-color: $third-color;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    margin-top: 0;
+    line-height: 50px;
+    text-align: center;
+    font-size: 1.5em;
+	.pts{
+	    position: absolute;
+	    background-color: lighten($secondary-color,10);
+	    border-radius: 50%;
+	    width: 25px;
+	    height: 25px;
+	    line-height: 25px;
+	    font-size: 0.6em;
+	    /* float: right; */
+	    margin-top: -21px;
+	    margin-left: 31px;
+	    text-align: center;
+	    box-shadow: #aaa 0px 1px 1px 0px;
+	}
+}
+
+.parciales_pts {
+	display: inline-block;
+	width: 49%;
+	margin-top: -30px;
+}
+
+.media {
+	margin-top: -35px;
+	display: block;
+}
+
+.resetear, .finish{
+	position: relative;
+    bottom: 38px;
+}
